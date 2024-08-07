@@ -1,3 +1,1 @@
-# klimatwav.github.io
-
 Siemanko!

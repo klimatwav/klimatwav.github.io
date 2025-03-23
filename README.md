@@ -47,6 +47,6 @@ Docs
 https://github.com/mbloch/mapshaper/wiki/Command-Reference#-style
 
 Command
-`mapshaper -i geo/simple.geojson -rename-layers poly,points -target points -style r=1.5 font-size=3 label-text "this.properties['@relations'][0].reltags.name" fill='white' dy=5 -target poly -style stroke='yellow' fill='black' stroke-width=1 -o map-lang.svg format=svg width=800 target='*'`
+`mapshaper -i geo/simple.geojson -proj EPSG:3857 -rename-layers poly,points -target points -style r=1.5 font-size=3 label-text "this.properties['@relations'][0].reltags.name" fill='white' dy=5 -target poly -style stroke='yellow' fill='black' stroke-width=1 -o map.svg fix-geometry format=svg width=800 target='*'`
 
 

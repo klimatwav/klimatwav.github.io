@@ -18,13 +18,28 @@ document.addEventListener("DOMContentLoaded", function () {
             const panzoom = Panzoom(elem, {
                 maxScale: 10
               })
-            //panzoom.pan(1000, 1000)
+            
             panzoom.zoom(2, { animate: true })
             elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel)
             
             const circle = document.getElementById('node/4569274473'); // WrzeszczDolny
             circle.addEventListener('click', function() {
                 playAudio('/audio/walkingup.wav')
+            });
+
+            const circle2 = document.getElementById('node/2905330784'); // Wrzeszcz Górny
+            circle2.addEventListener('click', function() {
+                panzoom.pan(100, 100, { animate: true, duration: 3000 }) 
+            });
+
+            const circle3 = document.getElementById('node/2908238053'); // VII Dwór
+            circle3.addEventListener('click', function() {
+                panzoom.pan(200, -100, { animate: true, duration: 2000 }) 
+                setTimeout(() => {
+                    panzoom.zoom(10, { animate: true, duration: 2000 })
+                }, 2000)
+                
+                
             });
         })
         .catch(error => console.error("Error loading SVG:", error));

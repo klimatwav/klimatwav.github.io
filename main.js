@@ -1,3 +1,102 @@
+const data = [
+    {
+      image: "img/note.svg",
+      name: "Lang Fuhr",
+      location: "Wrzeszcz Górny",
+      text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
+      audio: "audio/walkingup.wav",
+      date: "2025-04-01"
+    },
+    {
+      image: "img/note.svg",
+      name: "Przelewki",
+      location: "Wrzeszcz Dolny",
+      text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
+      audio: "audio/walkingup.wav",
+      date: "2025-04-02"
+    },
+    {
+      image: "img/note.svg",
+      name: "Józef K",
+      location: "Wrzeszcz Górny",
+      text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
+      audio: "audio/walkingup.wav",
+      date: "2025-04-03"
+    },
+    {
+      image: "img/note.svg",
+      name: "Ulica Elektryków",
+      location: "Wrzeszcz Górny",
+      text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
+      audio: "audio/walkingup.wav",
+      date: "2025-04-04"
+    }
+  ];
+  
+  
+  function showMapOnLocation(location, zoomOutValue = 0) {
+    console.log(`location=${location}, zoomOutValue=${zoomOutValue}`);
+    const mapContainer = document.getElementById('map-container');
+      const sliderContainer = document.querySelector('.slider-container');
+  
+      if (mapContainer.classList.contains('full-opacity')) {
+          // Show player view
+          mapContainer.classList.remove('full-opacity');
+          sliderContainer.classList.remove('hidden');
+      } else {
+          // Show map view
+          mapContainer.classList.add('full-opacity');
+          sliderContainer.classList.add('hidden');
+      }
+  }
+  
+  function createSlide(item) {
+    return `
+      <div class="swiper-slide">
+        <div class="slide-card text-center">
+          <img class="slide-card-img-top" src="${item.image}" alt="${item.name}" onclick="playAudio('${item.audio}')" />
+          <div class="slide-card-body">
+              <h5 onclick="showMapOnLocation('${item.location}')">${item.name}</h5>
+              <span onclick="showMapOnLocation('${item.location}', 10)">${item.location}</span>
+              <p class="slide-card-text">${item.text}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  function initSlider() {
+      
+    const swiperWrapper = document.getElementById('swiper-wrapper');
+    swiperWrapper.innerHTML = data.map(createSlide).join('');
+  
+    const swiper = new Swiper(".swiper", {
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      slidesPerView: 1,
+      loop: true,
+      centeredSlides: true,
+      spaceBetween: 10,
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 20
+        },
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 30
+        },
+        640: {
+          slidesPerView: 3,
+          spaceBetween: 40
+        }
+      }
+    });
+  }
+  
+  
 function playAudio(file) {
     var sound = new Howl({
       src: [file],
@@ -13,9 +112,29 @@ function scaleX(pixels) {
     return pixels / scaleW
 }
 
+function initToggleView() {
+    document.getElementById('toggle-view').addEventListener('click', function() {
+        const mapContainer = document.getElementById('map-container');
+        const sliderContainer = document.querySelector('.slider-container');
+        const button = document.getElementById('toggle-view');
+        
+        if (mapContainer.classList.contains('full-opacity')) {
+            // Show player view
+            mapContainer.classList.remove('full-opacity');
+            sliderContainer.classList.remove('hidden');
+            button.textContent = 'Toggle Map View';
+        } else {
+            // Show map view
+            mapContainer.classList.add('full-opacity');
+            sliderContainer.classList.add('hidden');
+            button.textContent = 'Show Player';
+        }
+    });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById("map-container");
+    initToggleView();
 
     fetch("map.svg")
         .then(response => response.text())
@@ -52,6 +171,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 
             });
+
+            initSlider()
         })
         .catch(error => console.error("Error loading SVG:", error));
 });

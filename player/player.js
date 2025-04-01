@@ -1,6 +1,6 @@
 const data = [
   {
-    image: "note.svg",
+    image: "player/note.svg",
     name: "Lang Fuhr",
     location: "Wrzeszcz Górny",
     text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
@@ -8,7 +8,7 @@ const data = [
     date: "2025-04-01"
   },
   {
-    image: "note.svg",
+    image: "player/note.svg",
     name: "Przelewki",
     location: "Wrzeszcz Dolny",
     text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
@@ -16,7 +16,7 @@ const data = [
     date: "2025-04-02"
   },
   {
-    image: "note.svg",
+    image: "player/note.svg",
     name: "Józef K",
     location: "Wrzeszcz Górny",
     text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
@@ -24,7 +24,7 @@ const data = [
     date: "2025-04-03"
   },
   {
-    image: "note.svg",
+    image: "player/note.svg",
     name: "Ulica Elektryków",
     location: "Wrzeszcz Górny",
     text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
@@ -43,6 +43,18 @@ function playAudio(file) {
 
 function showMapOnLocation(location, zoomOutValue = 0) {
   console.log(`location=${location}, zoomOutValue=${zoomOutValue}`);
+  const mapContainer = document.getElementById('map-container');
+    const sliderContainer = document.querySelector('.slider-container');
+
+    if (mapContainer.classList.contains('full-opacity')) {
+        // Show player view
+        mapContainer.classList.remove('full-opacity');
+        sliderContainer.classList.remove('hidden');
+    } else {
+        // Show map view
+        mapContainer.classList.add('full-opacity');
+        sliderContainer.classList.add('hidden');
+    }
 }
 
 function createSlide(item) {

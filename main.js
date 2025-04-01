@@ -26,7 +26,7 @@ const MapController = {
 
         const circle3 = document.getElementById('node/2908238053'); // VII Dwór
         circle3.addEventListener('click', () => {
-            this.panzoom.pan(scaleX(200), scaleX(-100), { animate: true, duration: 2000 });
+            this.panTo(200, -100)
             setTimeout(() => {
                 this.panzoom.zoom(10, { animate: true, duration: 2000 });
             }, 2000);
@@ -41,6 +41,10 @@ const MapController = {
         } else {
             this.panzoom.zoom(this.initialZoom, { animate: true, duration: 2000 });
         }
+    },
+
+    panTo(x, y) {
+        this.panzoom.pan(scaleX(x), scaleX(y), { animate: true, duration: 2000 });
     }
 };
 
@@ -90,6 +94,10 @@ const SliderController = {
                 }
             }
         });
+        swiper.on('slideChangeTransitionEnd', function (swiper) {
+            const location = data.locations[swiper.realIndex];
+            MapController.panTo(location.coordinates.x, location.coordinates.y);
+        });
     },
 
     createSlide(item) {
@@ -98,8 +106,8 @@ const SliderController = {
                 <div class="slide-card text-center">
                     <img class="slide-card-img-top" src="${item.image}" alt="${item.name}" onclick="AudioController.play('${item.audio}')" />
                     <div class="slide-card-body">
-                        <h5 onclick="MapController.showLocation('${item.location}')">${item.name}</h5>
-                        <span onclick="MapController.showLocation('${item.location}', 10)">${item.location}</span>
+                        <h5 onclick="MapController.showLocation('${item.locationName}')">${item.name}</h5>
+                        <span onclick="MapController.showLocation('${item.locationName}', 10)">${item.locationName}</span>
                         <p class="slide-card-text">${item.text}</p>
                     </div>
                 </div>

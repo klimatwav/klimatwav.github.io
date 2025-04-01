@@ -3,7 +3,11 @@
     {
       "image": "img/note.svg",
       "name": "Lang Fuhr",
-      "location": "Wrzeszcz Górny",
+      "locationName": "Wrzeszcz Górny",
+      "coordinates": {
+        "x": 10,
+        "y": 10
+      },
       "text": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
       "audio": "audio/walkingup.wav",
       "date": "2025-04-01"
@@ -11,7 +15,11 @@
     {
       "image": "img/note.svg",
       "name": "Przelewki",
-      "location": "Wrzeszcz Dolny",
+      "locationName": "Wrzeszcz Dolny",
+      "coordinates": {
+        "x": 100,
+        "y": 100
+      },
       "text": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
       "audio": "audio/walkingup.wav",
       "date": "2025-04-02"
@@ -19,7 +27,11 @@
     {
       "image": "img/note.svg",
       "name": "Józef K",
-      "location": "Wrzeszcz Górny",
+      "locationName": "Wrzeszcz Górny",
+      "coordinates": {
+        "x": 200,
+        "y": 200
+      },
       "text": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
       "audio": "audio/walkingup.wav",
       "date": "2025-04-03"
@@ -27,7 +39,11 @@
     {
       "image": "img/note.svg",
       "name": "Ulica Elektryków",
-      "location": "Wrzeszcz Górny",
+      "locationName": "Wrzeszcz Górny",
+      "coordinates": {
+        "x": 300,
+        "y": 300
+      },
       "text": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
       "audio": "audio/walkingup.wav",
       "date": "2025-04-04"

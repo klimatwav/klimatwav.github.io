@@ -1,40 +1,4 @@
-const data = [
-    {
-      image: "img/note.svg",
-      name: "Lang Fuhr",
-      location: "Wrzeszcz Górny",
-      text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
-      audio: "audio/walkingup.wav",
-      date: "2025-04-01"
-    },
-    {
-      image: "img/note.svg",
-      name: "Przelewki",
-      location: "Wrzeszcz Dolny",
-      text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
-      audio: "audio/walkingup.wav",
-      date: "2025-04-02"
-    },
-    {
-      image: "img/note.svg",
-      name: "Józef K",
-      location: "Wrzeszcz Górny",
-      text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
-      audio: "audio/walkingup.wav",
-      date: "2025-04-03"
-    },
-    {
-      image: "img/note.svg",
-      name: "Ulica Elektryków",
-      location: "Wrzeszcz Górny",
-      text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
-      audio: "audio/walkingup.wav",
-      date: "2025-04-04"
-    }
-  ];
-  
-  
-  function showMapOnLocation(location, zoomOutValue = 0) {
+function showMapOnLocation(location, zoomOutValue = 0) {
     console.log(`location=${location}, zoomOutValue=${zoomOutValue}`);
     const mapContainer = document.getElementById('map-container');
       const sliderContainer = document.querySelector('.slider-container');
@@ -48,9 +12,9 @@ const data = [
           mapContainer.classList.add('full-opacity');
           sliderContainer.classList.add('hidden');
       }
-  }
+}
   
-  function createSlide(item) {
+function createSlide(item) {
     return `
       <div class="swiper-slide">
         <div class="slide-card text-center">
@@ -63,12 +27,11 @@ const data = [
         </div>
       </div>
     `;
-  }
+}
   
-  function initSlider() {
-      
+function initSlider(data) {
     const swiperWrapper = document.getElementById('swiper-wrapper');
-    swiperWrapper.innerHTML = data.map(createSlide).join('');
+    swiperWrapper.innerHTML = data.locations.map(createSlide).join('');
   
     const swiper = new Swiper(".swiper", {
       navigation: {
@@ -94,7 +57,7 @@ const data = [
         }
       }
     });
-  }
+}
   
   
 function playAudio(file) {
@@ -112,67 +75,46 @@ function scaleX(pixels) {
     return pixels / scaleW
 }
 
-function initToggleView() {
-    document.getElementById('toggle-view').addEventListener('click', function() {
-        const mapContainer = document.getElementById('map-container');
-        const sliderContainer = document.querySelector('.slider-container');
-        const button = document.getElementById('toggle-view');
-        
-        if (mapContainer.classList.contains('full-opacity')) {
-            // Show player view
-            mapContainer.classList.remove('full-opacity');
-            sliderContainer.classList.remove('hidden');
-            button.textContent = 'Toggle Map View';
-        } else {
-            // Show map view
-            mapContainer.classList.add('full-opacity');
-            sliderContainer.classList.add('hidden');
-            button.textContent = 'Show Player';
-        }
-    });
-}
 
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById("map-container");
-    initToggleView();
 
-    fetch("map.svg")
-        .then(response => response.text())
-        .then(svgContent => {
-            container.innerHTML = svgContent;
-            const elem = container.querySelector("svg");
+    // Load data and SVG in parallel
+    Promise.all([
+        fetch("data.json").then(response => response.json()),
+        fetch("map.svg").then(response => response.text())
+    ])
+    .then(([data, svgContent]) => {
+        container.innerHTML = svgContent;
+        const elem = container.querySelector("svg");
 
-            const panzoom = Panzoom(elem, {
-                maxScale: 10,
-                step: 0.8,
-              })
-            
-            panzoom.zoom(2, { animate: true })
-            elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel)
-            
-            const circle = document.getElementById('node/4569274473'); // WrzeszczDolny
-            circle.addEventListener('click', function() {
-                playAudio('/audio/walkingup.wav')
-            });
-
-            //panScaled(100)
-
-            const circle2 = document.getElementById('node/2905330784'); // Wrzeszcz Górny
-            circle2.addEventListener('click', function() {
-                panzoom.pan(scaleX(100), scaleX(100), { animate: true, duration: 3000 }) 
-            });
-
-            const circle3 = document.getElementById('node/2908238053'); // VII Dwór
-            circle3.addEventListener('click', function() {
-                panzoom.pan(scaleX(200), scaleX(-100), { animate: true, duration: 2000 }) 
-                setTimeout(() => {
-                    panzoom.zoom(10, { animate: true, duration: 2000 })
-                }, 2000)
-                
-                
-            });
-
-            initSlider()
+        const panzoom = Panzoom(elem, {
+            maxScale: 10,
+            step: 0.8,
         })
-        .catch(error => console.error("Error loading SVG:", error));
+        
+        panzoom.zoom(2, { animate: true })
+        elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel)
+        
+        const circle = document.getElementById('node/4569274473'); // WrzeszczDolny
+        circle.addEventListener('click', function() {
+            playAudio('/audio/walkingup.wav')
+        });
+
+        const circle2 = document.getElementById('node/2905330784'); // Wrzeszcz Górny
+        circle2.addEventListener('click', function() {
+            panzoom.pan(scaleX(100), scaleX(100), { animate: true, duration: 3000 }) 
+        });
+
+        const circle3 = document.getElementById('node/2908238053'); // VII Dwór
+        circle3.addEventListener('click', function() {
+            panzoom.pan(scaleX(200), scaleX(-100), { animate: true, duration: 2000 }) 
+            setTimeout(() => {
+                panzoom.zoom(10, { animate: true, duration: 2000 })
+            }, 2000)
+        });
+
+        initSlider(data)
+    })
+    .catch(error => console.error("Error loading resources:", error));
 });

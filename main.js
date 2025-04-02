@@ -21,30 +21,47 @@ const MapController = {
 
         const circle2 = document.getElementById('node/2905330784'); // Wrzeszcz Górny
         circle2.addEventListener('click', () => {
-            this.panzoom.pan(scaleX(100), scaleX(100), { animate: true, duration: 3000 });
+            this.panzoom.pan(scaleX(100), scaleX(100), { animate: true, duration: 1000 });
         });
 
         const circle3 = document.getElementById('node/2908238053'); // VII Dwór
         circle3.addEventListener('click', () => {
             this.panTo(200, -100)
             setTimeout(() => {
-                this.panzoom.zoom(10, { animate: true, duration: 2000 });
+                this.panzoom.zoom(10, { animate: true, duration: 1000 });
             }, 2000);
         });
+
+        const lang = document.getElementById('lang')
+        lang.addEventListener('click', () => {
+            ViewController.switchView();
+        });
+
+        const jozefk = document.getElementById('jozefk')
+        jozefk.addEventListener('click', () => {
+            ViewController.switchView();
+        });
+
     },
 
-    showLocation(location, zoomOutValue = 0) {
-        console.log(`location=${location}, zoomOutValue=${zoomOutValue}`);
+    showLocation(coordinates, zoomOutValue = 0) {
+        console.log(`coordinates=${coordinates}, zoomOutValue=${zoomOutValue}`);
         ViewController.switchView();
-        if(zoomOutValue > 0 && this.panzoom) {
-            this.panzoom.zoom(zoomOutValue, { animate: true, duration: 2000 });
-        } else {
-            this.panzoom.zoom(this.initialZoom, { animate: true, duration: 2000 });
-        }
+        setTimeout(() => {
+            this.panTo(coordinates.x, coordinates.y);
+            setTimeout(() => {
+                if(zoomOutValue > 0 && this.panzoom) {
+                    this.panzoom.zoom(zoomOutValue, { animate: true, duration: 1000 });
+                } else {
+                    this.panzoom.zoom(this.initialZoom, { animate: true, duration: 1000 });
+                }
+            }, 500);
+        }, 100)
+        
     },
 
     panTo(x, y) {
-        this.panzoom.pan(scaleX(x), scaleX(y), { animate: true, duration: 2000 });
+        this.panzoom.pan(scaleX(x), scaleX(y), { animate: true, duration: 1000 });
     }
 };
 
@@ -106,8 +123,8 @@ const SliderController = {
                 <div class="slide-card text-center">
                     <img class="slide-card-img-top" src="${item.image}" alt="${item.name}" onclick="AudioController.play('${item.audio}')" />
                     <div class="slide-card-body">
-                        <h5 onclick="MapController.showLocation('${item.locationName}')">${item.name}</h5>
-                        <span onclick="MapController.showLocation('${item.locationName}', 10)">${item.locationName}</span>
+                        <h5 onclick="MapController.showLocation(${JSON.stringify(item.coordinates).replace(/"/g, '&quot;')}, 7)">${item.name}</h5>
+                        <span onclick="MapController.showLocation(${JSON.stringify(item.coordinates).replace(/"/g, '&quot;')})">${item.locationName}</span>
                         <p class="slide-card-text">${item.text}</p>
                     </div>
                 </div>
@@ -138,6 +155,7 @@ function scaleX(pixels) {
     console.log(`screen ${window.innerWidth}/${window.innerHeight}`);
     const w = 2560;
     const scaleW = w / window.innerWidth;
+    console.log(`pixels=${pixels}, scale=${pixels / scaleW}`);
     return pixels / scaleW;
 }
 

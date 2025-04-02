@@ -1,0 +1,5 @@
+1. Upewnic się, ze zregenerowanie mapy działa (Pamiętac o animacjach i wypelnieniach; jakis skrypt ktory bedzie to wypelnial?)
+2. Powiązać simple.geojson z data.json | Dodawanie nowego nagrania
+3. Poprawić zoom na dzielnicę i zoom na miejsce
+4. Jedno miejsce będzie mogło mieć wiele nagrań
+5. Zrobić mapping lokalizacji na pozycje x,y do funkcji pan()

@@ -5,8 +5,8 @@
       "name": "Lang Fuhr",
       "locationName": "Wrzeszcz Górny",
       "coordinates": {
-        "x": 10,
-        "y": 10
+        "x": -150,
+        "y": 0
       },
       "text": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
       "audio": "audio/walkingup.wav",
@@ -27,10 +27,10 @@
     {
       "image": "img/note.svg",
       "name": "Józef K",
-      "locationName": "Wrzeszcz Górny",
+      "locationName": "Centrum",
       "coordinates": {
-        "x": 200,
-        "y": 200
+        "x": -580,
+        "y": -480
       },
       "text": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
       "audio": "audio/walkingup.wav",
@@ -39,10 +39,10 @@
     {
       "image": "img/note.svg",
       "name": "Ulica Elektryków",
-      "locationName": "Wrzeszcz Górny",
+      "locationName": "Stocznia",
       "coordinates": {
-        "x": 300,
-        "y": 300
+        "x": -300,
+        "y": -200
       },
       "text": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat",
       "audio": "audio/walkingup.wav",

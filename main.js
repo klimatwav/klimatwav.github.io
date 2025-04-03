@@ -34,14 +34,15 @@ const MapController = {
 
         const lang = document.getElementById('lang')
         lang.addEventListener('click', () => {
+            SliderController.goToSlide(0);
             ViewController.switchView();
         });
 
         const jozefk = document.getElementById('jozefk')
         jozefk.addEventListener('click', () => {
+            SliderController.goToSlide(2);
             ViewController.switchView();
         });
-
     },
 
     showLocation(coordinates, zoomOutValue = 0) {
@@ -83,11 +84,13 @@ const ViewController = {
 
 // Create a SliderController module to handle slider-related functionality
 const SliderController = {
+    swiper: null,
+
     init(data) {
         const swiperWrapper = document.getElementById('swiper-wrapper');
         swiperWrapper.innerHTML = data.locations.map(this.createSlide).join('');
     
-        const swiper = new Swiper(".swiper", {
+        this.swiper = new Swiper(".swiper", {
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev"
@@ -111,7 +114,9 @@ const SliderController = {
                 }
             }
         });
-        swiper.on('slideChangeTransitionEnd', function (swiper) {
+
+        this.swiper.on('slideChangeTransitionEnd', (swiper) => {
+            console.log(`swiper.realIndex=${swiper.realIndex}`);
             const location = data.locations[swiper.realIndex];
             MapController.panTo(location.coordinates.x, location.coordinates.y);
         });
@@ -130,6 +135,12 @@ const SliderController = {
                 </div>
             </div>
         `;
+    },
+
+    goToSlide(index) {
+        if (this.swiper) {
+            this.swiper.slideToLoop(index, 500);
+        }
     }
 };
 
@@ -155,13 +166,20 @@ function scaleX(pixels) {
     console.log(`screen ${window.innerWidth}/${window.innerHeight}`);
     const w = 2560;
     const scaleW = w / window.innerWidth;
-    console.log(`pixels=${pixels}, scale=${pixels / scaleW}`);
+    // console.log(`pixels=${pixels}, scale=${pixels / scaleW}`);
     return pixels / scaleW;
 }
 
 // Initialize the application
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById("map-container");
+
+    // Add escape key handler
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            ViewController.switchView();
+        }
+    });
 
     Promise.all([
         fetch("data.json").then(response => response.json()),

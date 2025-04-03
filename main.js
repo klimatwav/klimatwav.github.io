@@ -52,9 +52,9 @@ const MapController = {
             this.panTo(coordinates.x, coordinates.y);
             setTimeout(() => {
                 if(zoomOutValue > 0 && this.panzoom) {
-                    this.panzoom.zoom(zoomOutValue, { animate: true, duration: 1000 });
+                    this.panzoom.zoom(zoomOutValue, { animate: true, duration: 500 });
                 } else {
-                    this.panzoom.zoom(this.initialZoom, { animate: true, duration: 1000 });
+                    this.panzoom.zoom(this.initialZoom, { animate: true, duration: 500 });
                 }
             }, 500);
         }, 100)
@@ -139,7 +139,7 @@ const SliderController = {
 
     goToSlide(index) {
         if (this.swiper) {
-            this.swiper.slideToLoop(index, 500);
+            this.swiper.slideToLoop(index, 0);
         }
     }
 };

@@ -126,7 +126,7 @@ const SliderController = {
         return `
             <div class="swiper-slide">
                 <div class="slide-card text-center">
-                    <img class="slide-card-img-top" src="${item.image}" alt="${item.name}" onclick="AudioController.play('${item.audio}')" />
+                    <img class="slide-card-img-top" src="${item.image}" alt="${item.name}" onclick="AudioController.play('${item.audio[0].file}')" />
                     <div class="slide-card-body">
                         <h5 onclick="MapController.showLocation(${JSON.stringify(item.coordinates).replace(/"/g, '&quot;')}, 7)">${item.name}</h5>
                         <span onclick="MapController.showLocation(${JSON.stringify(item.coordinates).replace(/"/g, '&quot;')})">${item.locationName}</span>

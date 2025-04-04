@@ -41,7 +41,7 @@ svg {
     height: 100vh;
     z-index: 2;
     background: rgba(17, 17, 17, 0.7);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(3px);
     transition: opacity 0.3s ease;
 }
 
@@ -57,7 +57,10 @@ svg {
 
 .slide-card {
     margin: 0 40px;
-    padding: 60px 100px;
+    padding: 20px 40px;
+    @media screen and (min-height: 1020px) {
+        padding: 60px 100px;
+    }
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.8);
     cursor: grab;

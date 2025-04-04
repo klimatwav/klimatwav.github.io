@@ -108,7 +108,7 @@ const SliderController = {
                     slidesPerView: 2,
                     spaceBetween: 30
                 },
-                640: {
+                1020: {
                     slidesPerView: 3,
                     spaceBetween: 40
                 }

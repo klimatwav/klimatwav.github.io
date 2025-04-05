@@ -62,7 +62,7 @@ svg {
         padding: 60px 100px;
     }
     @media screen and (max-height: 500px) and (orientation: landscape) {
-        padding: 10px 10px;
+        padding: 10px 40px;
     }
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.8);
@@ -79,24 +79,33 @@ svg {
     width: 100px;
     height: 100px;
     @media screen and (max-height: 500px) and (orientation: landscape) {
-        width: 20px;
-        height: 20px;
+        width: 70px;
+        height: 70px;
     }
 }
 
 .slide-card h5 {
     color: #ffffff;
     font-size: 21px;
+    @media screen and (max-height: 500px) and (orientation: landscape) {
+        font-size: 16px;
+    }
     margin-top: 15px;
 }
 
 .slide-card span {
     font-size: 18px;
+    @media screen and (max-height: 500px) and (orientation: landscape) {
+        font-size: 13px;
+    }
     color: #7d7c7c;
 }
 
 .slide-card p {
     font-size: 18px;
+    @media screen and (max-height: 500px) and (orientation: landscape) {
+        font-size: 13px;
+    }
     color: #efe2e2;
     padding-bottom: 15px;
     margin-top: 15px;

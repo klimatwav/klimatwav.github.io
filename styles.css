@@ -61,6 +61,9 @@ svg {
     @media screen and (min-height: 1020px) {
         padding: 60px 100px;
     }
+    @media screen and (max-height: 500px) and (orientation: landscape) {
+        padding: 10px 10px;
+    }
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.8);
     cursor: grab;
@@ -75,6 +78,10 @@ svg {
     box-shadow: 0 5px 20px -4px #8a86e8;
     width: 100px;
     height: 100px;
+    @media screen and (max-height: 500px) and (orientation: landscape) {
+        width: 70px;
+        height: 70px;
+    }
 }
 
 .slide-card h5 {

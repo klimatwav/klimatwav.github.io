@@ -109,6 +109,7 @@ svg {
     color: #efe2e2;
     padding-bottom: 15px;
     margin-top: 15px;
+    min-width: 250px;
 }
 
 .swiper-slide {

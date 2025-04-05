@@ -130,7 +130,7 @@ const SliderController = {
                     <div class="slide-card-body">
                         <h5 onclick="MapController.showLocation(${JSON.stringify(item.coordinates).replace(/"/g, '&quot;')}, 7)">${item.name}</h5>
                         <span onclick="MapController.showLocation(${JSON.stringify(item.coordinates).replace(/"/g, '&quot;')})">${item.locationName}</span>
-                        <p class="slide-card-text">${item.text}</p>
+                        <p class="slide-card-text">${item.text.join('<br>')}</p>
                     </div>
                 </div>
             </div>

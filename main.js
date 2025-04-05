@@ -123,6 +123,12 @@ const SliderController = {
     },
 
     createSlide(item) {
+        let desc = ''
+        item.text.forEach((t, index) => {
+            desc += `${index+1} `
+        })
+        desc += '<br/>'
+        desc += item.text.join('<br/>')
         return `
             <div class="swiper-slide">
                 <div class="slide-card text-center">
@@ -130,7 +136,7 @@ const SliderController = {
                     <div class="slide-card-body">
                         <h5 onclick="MapController.showLocation(${JSON.stringify(item.coordinates).replace(/"/g, '&quot;')}, 7)">${item.name}</h5>
                         <span onclick="MapController.showLocation(${JSON.stringify(item.coordinates).replace(/"/g, '&quot;')})">${item.locationName}</span>
-                        <p class="slide-card-text">${item.text.join('<br>')}</p>
+                        <p class="slide-card-text">${desc}</p>
                     </div>
                 </div>
             </div>

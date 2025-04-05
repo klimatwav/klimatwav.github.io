@@ -8,7 +8,7 @@
         "x": -150,
         "y": 0
       },
-      "text": ["Nam libero tempore", "cum soluta nobis est", "eligendi optio cumque nihil impedit", "quo minus id quod maxime placeat"],
+      "text": ["Nam libero tempore", "cum soluta nobis est"],
       "audio": [
         {
           "file": "audio/walkingup.wav",
@@ -29,7 +29,7 @@
         "x": 100,
         "y": 100
       },
-      "text": ["Nam libero tempore", "cum soluta nobis est", "eligendi optio cumque nihil impedit", "quo minus id quod maxime placeat"],
+      "text": ["Nam libero tempore", "cum soluta nobis est", "eligendi optio cumque nihil impedit"],
       "audio": [
         {
           "file": "audio/walkingup.wav",
@@ -54,7 +54,7 @@
         "x": -580,
         "y": -480
       },
-      "text": ["Nam libero tempore", "cum soluta nobis est", "eligendi optio cumque nihil impedit", "quo minus id quod maxime placeat"],
+      "text": ["Nam libero tempore"],
       "audio": [
         {
           "file": "audio/walkingup.wav",

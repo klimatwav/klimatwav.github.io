@@ -79,15 +79,15 @@ svg {
     width: 100px;
     height: 100px;
     @media screen and (max-height: 500px) and (orientation: landscape) {
-        width: 70px;
-        height: 70px;
+        width: 20px;
+        height: 20px;
     }
 }
 
 .slide-card h5 {
     color: #ffffff;
     font-size: 21px;
-    margin: 15px 0;
+    margin-top: 15px;
 }
 
 .slide-card span {
@@ -99,6 +99,7 @@ svg {
     font-size: 18px;
     color: #efe2e2;
     padding-bottom: 15px;
+    margin-top: 15px;
 }
 
 .swiper-slide {

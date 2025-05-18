@@ -104,5 +104,13 @@
 </circle>
 <text y="5" x="0" font-size="3" fill="white">Józef K</text>
 </g>
+<g transform="translate(653 466.8)" id="dom">
+<circle cx="0" cy="0" r="1.5" fill="white"/>
+<text y="5" x="0" font-size="3" fill="white">DOM</text>
+</g>
+<g transform="translate(645.8 467.3)" id="cafeluis">
+<circle cx="0" cy="0" r="1.5" fill="white"/>
+<text y="5" x="0" font-size="3" fill="white">Cafe Luis</text>
+</g>
 </g>
 </svg>
